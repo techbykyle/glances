@@ -22,10 +22,7 @@ const QuickView = ({device, http, httpAction, tile, useHttp, useInterval}) => {
             })
         }
     }
-    const info_style = {
-        margin: '0 20px 0 5px',
-        verticalAlign: 'middle'
-    }
+    const info_style = { margin: '0 20px 0 5px' }
 
     useHttp(device.id, tile.id, http['fs'])
     useHttp(device.id, tile.id, http['limits'])
@@ -44,7 +41,7 @@ const QuickView = ({device, http, httpAction, tile, useHttp, useInterval}) => {
 
     return (
         <div style={{height: '100%'}}>
-            <div className="float_l" style={info_style}>
+            <div className="float_l va_middle" style={info_style}>
                 <Metrics cpu_usage={cpu_usage} mem_usage={mem_usage} fs_usage={fs_usage} hostname={hostname} />
             </div>
             <div className="float_l" style={{height: '100%', marginRight: 10, borderRight: '1px solid #424242'}}>&nbsp;</div>
