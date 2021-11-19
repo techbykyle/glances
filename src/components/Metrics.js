@@ -28,15 +28,15 @@ const Metrics = ({cpu_usage, hostname, fs_usage, mem_usage}) => {
         <div className="txt_left clear-after f18">
             <p style={{height: 39}} title={`Hostname: ${hostname}`} className="txt_center f20 faccented">{hostname_short}</p>
             <div style={{height: 34}} title="CPU Usage">
-                <span className="va_middle material-icons f25">memory</span> &nbsp;
+                <span className="va_middle material-icons f25" style={colors.cpu_color}>memory</span> &nbsp;
                 <span className="va_middle" style={colors.cpu_color}>{cpu_usage}%</span>
             </div>
             <div style={{height: 34}} title="Memory Usage">
-                <span className="va_middle material-icons f25 flip_v">straighten</span> &nbsp;
+                <span className="va_middle material-icons f25 flip_v" style={colors.mem_color}>straighten</span> &nbsp;
                 <span className="va_middle" style={colors.mem_color}>{mem_usage}%</span>
             </div>
             <div style={{height: 34}} title="Disk Usage">
-                <span className="va_middle material-icons f25">save</span> &nbsp;
+                <span className="va_middle material-icons f25" style={colors.disk_color}>save</span> &nbsp;
                 <span className="va_middle" style={colors.disk_color}>{fs_percent}%</span>
             </div>
         </div>
