@@ -17,8 +17,9 @@ const Temp = ({sensor}) => {
     }
 
     const parent_style = {
-        display: 'inline-block',
-        margin: '0 15px',
+        float: 'left',
+        display: 'block',
+        margin: '0 15px 20px 15px',
     }
     const circle_parent_style = {
         width: 100, 

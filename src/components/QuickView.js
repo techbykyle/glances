@@ -45,7 +45,7 @@ const QuickView = ({device, http, httpAction, tile, useHttp, useInterval}) => {
                 <Metrics cpu_usage={cpu_usage} mem_usage={mem_usage} fs_usage={fs_usage} hostname={hostname} />
             </div>
             <div className="float_l" style={{height: '100%', marginRight: 10, borderRight: '1px solid #424242'}}>&nbsp;</div>
-            <div className="float_l">{showTemps()}</div>
+            {showTemps()}
         </div>
     )
 }
