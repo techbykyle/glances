@@ -1,7 +1,7 @@
 {
   "name": "glances",
   "federated-module-name": "Glances",
-  "version": "0.0.1",
+  "version": "0.0.5",
   "description": "UI Components to render metrics from the Glance API",
   "main": "index.js",
   "scripts": {
