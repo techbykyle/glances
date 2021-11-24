@@ -31,9 +31,12 @@ const QuickView = ({device, http, httpAction, tile, useHttp, useInterval}) => {
     useHttp(device.id, tile.id, http['system'])
 
     useInterval(() => {
-        httpAction(dispatch, user.token, device.id, tile.id, http['sensors'])
         httpAction(dispatch, user.token, device.id, tile.id, http['quicklook'])
-    }, 5000)
+    }, 5000, tile.id, http['quicklook'])
+
+    useInterval(() => {
+        httpAction(dispatch, user.token, device.id, tile.id, http['sensors'])
+    }, 5000, tile.id, http['sensors'])
 
     useInterval(() => {
         httpAction(dispatch, user.token, device.id, tile.id, http['fs'])
