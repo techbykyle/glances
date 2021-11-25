@@ -16,7 +16,7 @@ const QuickView = ({device, http, httpAction, tile, useHttp, useInterval}) => {
         
         const sensors = device_state[http['sensors']]
 
-        if(sensors &&sensors.length > 0) {
+        if(sensors && sensors.length > 0) {
             return sensors.map((sensor, i)=> {
                 return <Temp sensor={sensor} key={`${sensor.label}-${i}`} />
             })
