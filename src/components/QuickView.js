@@ -26,7 +26,7 @@ const QuickView = ({device, http, httpAction, tile, useHttp, useInterval}) => {
     }
 
     const showServerDown = () => {
-        if(device_state?.error) {
+        if(device_state?.error && !device_state[http['quicklook']] && !device_state[http['system']]) {
             return <div 
                 style={{
                     fontSize: 16,
@@ -41,7 +41,7 @@ const QuickView = ({device, http, httpAction, tile, useHttp, useInterval}) => {
                 Error: {device_state.message}
             </div>
         }
-        return null
+        return showTemps()
     }
 
     useHttp(device.id, tile.id, http['fs'])
@@ -62,13 +62,18 @@ const QuickView = ({device, http, httpAction, tile, useHttp, useInterval}) => {
         httpAction(dispatch, user.token, device.id, tile.id, http['fs'])
     }, 5 * 60000)
 
+    useInterval(() => {
+        if(hostname.length === 0) {
+            httpAction(dispatch, user.token, device.id, tile.id, http['system'])
+        }
+    }, 60000, tile.id, http['system'])
+
     return (
         <div style={{height: '100%'}}>
             <div className="float_l va_middle" style={info_style}>
                 <Metrics cpu_usage={cpu_usage} mem_usage={mem_usage} fs_usage={fs_usage} hostname={hostname} />
             </div>
             <div className="float_l" style={{height: '100%', marginRight: 10, borderRight: '1px solid #424242'}}>&nbsp;</div>
-            {showTemps()}
             {showServerDown()}
         </div>
     )
