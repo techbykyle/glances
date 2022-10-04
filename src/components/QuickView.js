@@ -12,6 +12,8 @@ const QuickView = ({device, http, httpAction, tile, useHttp, useInterval}) => {
     const mem_usage = device_state[http['quicklook']]?.mem || 0
     const fs_usage = device_state[http['fs']] || []
     const dispatch = useDispatch()
+    const info_style = { margin: '0 20px 0 5px' }
+
     const showTemps = () => {
         
         const sensors = device_state[http['sensors']]
@@ -22,7 +24,25 @@ const QuickView = ({device, http, httpAction, tile, useHttp, useInterval}) => {
             })
         }
     }
-    const info_style = { margin: '0 20px 0 5px' }
+
+    const showServerDown = () => {
+        if(device_state?.error) {
+            return <div 
+                style={{
+                    fontSize: 16,
+                    height: '100%',
+                    display: 'flex', 
+                    alignItems: 'center', 
+                    justifyContent: 'center', 
+                    color: '#f59598',
+                    wordBreak: 'break-all'
+                }}>
+                Cannot reach device: "{`${device.name}`}" retrying...<br />
+                Error: {device_state.message}
+            </div>
+        }
+        return null
+    }
 
     useHttp(device.id, tile.id, http['fs'])
     useHttp(device.id, tile.id, http['limits'])
@@ -49,6 +69,7 @@ const QuickView = ({device, http, httpAction, tile, useHttp, useInterval}) => {
             </div>
             <div className="float_l" style={{height: '100%', marginRight: 10, borderRight: '1px solid #424242'}}>&nbsp;</div>
             {showTemps()}
+            {showServerDown()}
         </div>
     )
 }
